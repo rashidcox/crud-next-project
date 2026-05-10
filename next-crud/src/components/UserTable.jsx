@@ -23,12 +23,10 @@ const UserTable = ({ user, deleteUser }) => {
                     </thead>
                     <tbody>
                         {user.map((user) => (
-                            <tr key={user.id}>
-                                <td>{user.Name}</td>
-                                <td>{user.Email}</td>
-                                <td>{user.age}</td>
-                                <td>{user.country}</td>
-                                <td>{user.city}</td>
+                            <tr key={user._id}>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>{user.password}</td>
                                 <td className="flex gap-2">
                                     <Link href={`/users/${user._id}`}><button className="btn btn-primary">View</button></Link>
                                     <Link href={`/users/${user._id}/edit`}><button className="btn btn-warning">Edit</button></Link>

@@ -27,24 +27,41 @@ async function run() {
     await client.connect();
     const database = client.db('test');
     const itemsCollection = database.collection('user');
-
+// Get all users
     app.get('/users', async (req, res) => {
         const cursor = itemsCollection.find();
         const result = await cursor.toArray();
         res.send(result);
     });
-
+// fiddle with id
     app.get('/users/:id', async (req, res) => {
         const id = req.params.id;
         const query = { _id: new ObjectId(id) };
         const result = await itemsCollection.findOne(query);
         res.send(result);
     });
-
+// 
     app.delete('/users/:id', async (req, res) => {
         const id = req.params.id;
         const query = { _id: new ObjectId(id) };
         const result = await itemsCollection.deleteOne(query);
+        res.send(result);
+    });
+
+    // Add a new user
+    app.post('/users', async (req, res) => {
+        const user = req.body;
+        const result = await itemsCollection.insertOne(user);
+        res.send(result);
+    });
+
+    // Update a user
+    app.patch('/users/:id', async (req, res) => {
+        const id = req.params.id;
+        const updatedUser = req.body;
+        const filter = { _id: new ObjectId(id) };
+        const updateDoc = { $set: updatedUser };
+        const result = await itemsCollection.updateOne(filter, updateDoc);
         res.send(result);
     });
        

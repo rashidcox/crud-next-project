@@ -10,11 +10,9 @@ const page = async({params}) => {
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="user-details shadow-md bg-base-100 p-4 rounded-sm ">
-                <p>Name: {user.Name}</p>
-                <p>Email: {user.Email}</p>
-                <p>Age: {user.age}</p>
-                <p>Country: {user.country}</p>
-                <p>City: {user.city}</p>
+                <p>Name: {user.name}</p>
+                <p>Email: {user.email}</p>
+                <p>Password: {user.password}</p>
                 <Link href={'/users'}><button className="btn btn-error">back</button></Link>
             </div>
         </div>
